@@ -25,7 +25,7 @@ public class RadioTest {
     @Test
     public void shouldSetStationNumberIfAboveMax() {
         Radio radio = new Radio();
-        radio.setStationNumber(Radio.maxStationNumber + 1);
+        radio.setStationNumber(radio.getMaxStationNumber() + 1);
         int expected = 0;
         int actual = radio.getStationNumber();
         Assertions.assertEquals(expected, actual);
@@ -44,7 +44,7 @@ public class RadioTest {
     @Test
     public void shouldSetNextIfMax() {
         Radio radio = new Radio();
-        radio.setStationNumber(Radio.maxStationNumber);
+        radio.setStationNumber(radio.getMaxStationNumber());
         radio.next();
         int expected = 0;
         int actual = radio.getStationNumber();
@@ -127,4 +127,28 @@ public class RadioTest {
         int actual = radio.getVolume();
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+    public void shouldSetStationsAmount() {
+        Radio radio = new Radio(15);
+        int expectedStationsAmount = 15;
+        int actualStationsAmount = radio.getStationsAmount();
+        int expectedMaxStation = 14;
+        int actualMaxStation = radio.getMaxStationNumber();
+        Assertions.assertEquals(expectedStationsAmount, actualStationsAmount);
+        Assertions.assertEquals(expectedMaxStation, actualMaxStation);
+    }
+
+    @Test
+    public void shouldNotSetStationsAmountLess1() {
+        Radio radio = new Radio(-2);
+        int expectedStationsAmount = 10;
+        int actualStationsAmount = radio.getStationsAmount();
+        int expectedMaxStation = 9;
+        int actualMaxStation = radio.getMaxStationNumber();
+        Assertions.assertEquals(expectedStationsAmount, actualStationsAmount);
+        Assertions.assertEquals(expectedMaxStation, actualMaxStation);
+    }
 }
+
+

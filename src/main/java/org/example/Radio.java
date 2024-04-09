@@ -1,12 +1,34 @@
 package org.example;
 
 public class Radio {
+    private int stationsAmount = 10;
     public final static int minStationNumber = 0;
-    public final static int maxStationNumber = 9;
+    private int maxStationNumber = stationsAmount - 1;
+
+
     public final static int MAX_VOLUME = 100;
     public final static int MIN_VOLUME = 0;
     private int stationNumber;
     private int currentVolume;
+
+    public Radio(int stationsAmount) {
+        if (stationsAmount > 0) {
+            this.stationsAmount = stationsAmount;
+            this.maxStationNumber = stationsAmount - 1;
+        }
+    }
+
+    public Radio() {
+    }
+
+    public int getStationsAmount() {
+        return stationsAmount;
+    }
+
+    public int getMaxStationNumber() {
+        return maxStationNumber;
+    }
+
 
     public int getVolume() {
         return currentVolume;
